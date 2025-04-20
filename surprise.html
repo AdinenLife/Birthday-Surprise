@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Birthday Surprise ❤️</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #121212, #2d2d2d);
+            color: #e0e0e0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #1f1f1f, #2d2d2d);
+            text-align: center;
+            padding: 2rem 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+        }
+        
+        h1 {
+            color: #ff7eb3;
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .subtitle {
+            color: #b0b0b0;
+            font-size: 1.2rem;
+        }
+        
+        .container {
+            flex: 1;
+            padding: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        
+        .tab-container {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 2rem;
+        }
+        
+        .tabs {
+            display: flex;
+            margin-bottom: 1rem;
+        }
+        
+        .tab {
+            padding: 1rem 2rem;
+            background: #1a1a1a;
+            color: #b0b0b0;
+            border: 1px solid #333;
+            border-bottom: none;
+            cursor: pointer;
+            border-radius: 10px 10px 0 0;
+            transition: all 0.3s;
+        }
+        
+        .tab.active {
+            background: #ff7eb3;
+            color: #121212;
+            font-weight: bold;
+        }
+        
+        .tab-content {
+            display: none;
+            background: rgba(30, 30, 30, 0.95);
+            border: 1px solid #444;
+            border-radius: 0 10px 10px 10px;
+            padding: 2rem;
+            animation: fadeIn 0.5s;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        /* Playlist Styling */
+        .playlist {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        
+        .song {
+            background: rgba(40, 40, 40, 0.8);
+            border-radius: 10px;
+            padding: 1rem;
+            display: flex;
+            align-items: center;
+            transition: all 0.3s;
+        }
+        
+        .song:hover {
+            transform: translateY(-3px);
+            background: rgba(50, 50, 50, 0.9);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .song-number {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #ff7eb3;
+            min-width: 40px;
+        }
+        
+        .song-details {
+            flex: 1;
+        }
+        
+        .song-title {
+            font-weight: bold;
+            margin-bottom: 0.3rem;
+        }
+        
+        .song-artist {
+            color: #b0b0b0;
+            font-size: 0.9rem;
+        }
+        
+        .song-note {
+            background: rgba(30, 30, 30, 0.9);
+            border-radius: 10px;
+            padding: 0.8rem;
+            margin-top: 0.5rem;
+            font-style: italic;
+            color: #d0d0d0;
+            display: none;
+        }
+        
+        .song-toggle {
+            background: none;
+            border: none;
+            color: #ff7eb3;
+            cursor: pointer;
+            margin-left: 1rem;
+            font-size: 1.2rem;
+        }
+        
+        /* Added audio player styling */
+        .audio-container {
+            margin-top: 0.5rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .audio-player {
+            flex: 1;
+            height: 30px;
+            border-radius: 15px;
+            background: #333;
+        }
+        
+        .audio-player::-webkit-media-controls-panel {
+            background: rgba(40, 40, 40, 0.8);
+        }
+        
+        .audio-player::-webkit-media-controls-current-time-display,
+        .audio-player::-webkit-media-controls-time-remaining-display {
+            color: #ff7eb3;
+        }
+        
+        .play-btn {
+            background: #ff7eb3;
+            color: #121212;
+            border: none;
+            border-radius: 50%;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            margin-right: 0.5rem;
+            transition: all 0.3s;
+        }
+        
+        .play-btn:hover {
+            background: #ff65a3;
+            transform: scale(1.1);
+        }
+        
+        /* Story Styling */
+        .story-container {
+            background: rgba(40, 40, 40, 0.8);
+            border-radius: 10px;
+            padding: 2rem;
+        }
+        
+        .story-title {
+            color: #ff7eb3;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        
+        .story-content {
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+        
+        .story-choices {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .choice-btn {
+            background: #333;
+            color: #e0e0e0;
+            border: 1px solid #555;
+            border-radius: 30px;
+            padding: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: left;
+        }
+        
+        .choice-btn:hover {
+            background: #ff7eb3;
+            color: #121212;
+            transform: translateX(5px);
+        }
+        
+        .back-story-btn {
+            background: rgba(70, 70, 70, 0.8);
+            color: #b0b0b0;
+            border: none;
+            border-radius: 20px;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            margin-top: 1rem;
+            transition: all 0.3s;
+        }
+        
+        .back-story-btn:hover {
+            background: rgba(90, 90, 90, 0.9);
+            color: #e0e0e0;
+        }
+        
+        .back-btn {
+            background: #ff7eb3;
+            color: #121212;
+            text-decoration: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 30px;
+            display: inline-block;
+            font-weight: bold;
+            transition: all 0.3s;
+            margin-top: 2rem;
+        }
+        
+        .back-btn:hover {
+            background: #ff65a3;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 126, 179, 0.4);
+        }
+        
+        footer {
+            text-align: center;
+            padding: 1.5rem;
+            background: #1a1a1a;
+            color: #888;
+            font-size: 0.9rem;
+        }
+        
+        .heart {
+            color: #ff7eb3;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Your Birthday Surprise</h1>
+        <p class="subtitle">Two special gifts just for you...</p>
+    </header>
+    
+    <div class="container">
+        <div class="tab-container">
+            <div class="tabs">
+                <div class="tab active" onclick="openTab(event, 'playlist')">Our Playlist</div>
+                <div class="tab" onclick="openTab(event, 'story')">Adventure Story</div>
+            </div>
+            
+            <!-- Playlist Tab -->
+            <div id="playlist" class="tab-content active">
+                <h2 class="story-title">Songs That Tell Our Story</h2>
+                <p class="story-content">I've created this playlist of songs that remind me of special moments we've shared together. Click on the "♡" button next to each song to read why it's meaningful to me.</p>
+                
+                <div class="playlist">
+                    <!-- Song 1 -->
+                    <div class="song">
+                        <div class="song-number">1</div>
+                        <div class="song-details">
+                            <div class="song-title">Homecoming</div>
+                            <div class="song-artist">Jaswed</div>
+                            <div class="audio-container">
+                                <button class="play-btn" onclick="playSong('song1')">▶</button>
+                                <audio id="song1" class="audio-player" controls>
+                                    <source src="homecoming (prod. cyfal x jm).mp3" type="audio/mpeg">
+                                    Your browser does not support the audio element.
+                                </audio>
+                            </div>
+                            <div class="song-note" id="note-1">This is the song that convienced me to confess to you. Every time I hear it, I remember how nervous I was and how it led to something amazing.</div>
+                        </div>
+                        <button class="song-toggle" onclick="toggleNote('note-1')">♡</button>
+                    </div>
+                    
+                    <!-- Song 2 -->
+                    <div class="song">
+                        <div class="song-number">2</div>
+                        <div class="song-details">
+                            <div class="song-title">Maan Meri Jaan</div>
+                            <div class="song-artist">King</div>
+                            <div class="audio-container">
+                                <button class="play-btn" onclick="playSong('song2')">▶</button>
+                                <audio id="song2" class="audio-player" controls>
+                                    <source src="Maan Meri Jaan  Official Music Video  Champagne Talk  King.mp3" type="audio/mpeg">
+                                    Your browser does not support the audio element.
+                                </audio>
+                            </div>
+                            <div class="song-note" id="note-2">Remember this was the first song I sang to you. That's when I knew I was completely in love with you.</div>
+                        </div>
+                        <button class="song-toggle" onclick="toggleNote('note-2')">♡</button>
+                    </div>
+                    
+                    <!-- Song 3 -->
+                    <div class="song">
+                        <div class="song-number">3</div>
+                        <div class="song-details">
+                            <div class="song-title">Oh, Pretty Woman</div>
+                            <div class="song-artist">Roy Orbison</div>
+                            <div class="audio-container">
+                                <button class="play-btn" onclick="playSong('song3')">▶</button>
+                                <audio id="song3" class="audio-player" controls>
+                                    <source src="Roy Orbison - Oh, Pretty Woman (Lyrics).mp3" type="audio/mpeg">
+                                    Your browser does not support the audio element.
+                                </audio>
+                            </div>
+                            <div class="song-note" id="note-3">This is your theme song. Your main charecter intro music.</div>
+                        </div>
+                        <button class="song-toggle" onclick="toggleNote('note-3')">♡</button>
+                    </div>
+                    
+                    <!-- Song 4 -->
+                    <div class="song">
+                        <div class="song-number">4</div>
+                        <div class="song-details">
+                            <div class="song-title">Until I Found You</div>
+                            <div class="song-artist">Stephen Sanchez</div>
+                            <div class="audio-container">
+                                <button class="play-btn" onclick="playSong('song4')">▶</button>
+                                <audio id="song4" class="audio-player" controls>
+                                    <source src="Stephen_Sanchez_-_Until_I_Found_You.mp3" type="audio/mpeg">
+                                    Your browser does not support the audio element.
+                                </audio>
+                            </div>
+                            <div class="song-note" id="note-4">The lyrics perfectly capture how I feel about you.</div>
+                        </div>
+                        <button class="song-toggle" onclick="toggleNote('note-4')">♡</button>
+                    </div>
+                    
+                    <!-- Song 5 -->
+                    <div class="song">
+                        <div class="song-number">5</div>
+                        <div class="song-details">
+                            <div class="song-title">Mera Mann Kehne Laga</div>
+                            <div class="song-artist">Ayushmann Khurana</div>
+                            <div class="audio-container">
+                                <button class="play-btn" onclick="playSong('song5')">▶</button>
+                                <audio id="song5" class="audio-player" controls>
+                                    <source src="NS-Mera Mann Kehne Laga.mp3" type="audio/mpeg">
+                                    Your browser does not support the audio element.
+                                </audio>
+                            </div>
+                            <div class="song-note" id="note-5">This is the one hindi song that I that perfectly reminds me of you.</div>
+                        </div>
+                        <button class="song-toggle" onclick="toggleNote('note-5')">♡</button>
+                    </div>
+                    
+                    <!-- Song 6 -->
+                    <div class="song">
+                        <div class="song-number">6</div>
+                        <div class="song-details">
+                            <div class="song-title">Sao Paulo</div>
+                            <div class="song-artist">The Weeknd</div>
+                            <div class="audio-container">
+                                <button class="play-btn" onclick="playSong('song6')">▶</button>
+                                <audio id="song6" class="audio-player" controls>
+                                    <source src="The-Weeknd-S-o-Paulo-(HipHopKit.com).mp3" type="audio/mpeg">
+                                    Your browser does not support the audio element.
+                                </audio>
+                            </div>
+                            <div class="song-note" id="note-6">It would be a crime to not include this song in this playlist.</div>
+                        </div>
+                        <button class="song-toggle" onclick="toggleNote('note-6')">♡</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Story Tab -->
+            <div id="story" class="tab-content">
+                <div class="story-container" id="scene-start">
+                    <h2 class="story-title">A Birthday Adventure</h2>
+                    <div class="story-content">
+                        <p>Once upon a time, there was a beautiful princess (that's you!) who woke up on her birthday to discover a mysterious map on her bedside table. The map showed three different paths, each leading to a different adventure.</p>
+                        <p>The princess, being brave and curious, had to choose which path to follow first...</p>
+                    </div>
+                    <div class="story-choices">
+                        <button class="choice-btn" onclick="showScene('scene-beach')">Follow the path to the sparkling beach</button>
+                        <button class="choice-btn" onclick="showScene('scene-forest')">Take the trail through the enchanted forest</button>
+                        <button class="choice-btn" onclick="showScene('scene-mountain')">Climb the path to the misty mountain</button>
+                    </div>
+                </div>
+                
+                <!-- Beach Scene -->
+                <div class="story-container" id="scene-beach" style="display: none;">
+                    <h2 class="story-title">The Sparkling Beach</h2>
+                    <div class="story-content">
+                        <p>The princess followed the path to a beautiful beach with crystal-clear waters. As she walked along the shore, she noticed a message in a bottle half-buried in the sand.</p>
+                        <p>She picked it up, opened it, and inside was a note that read: "Your beauty shines brighter than all the stars in the sky. I fall in love with your smile every single day."</p>
+                        <p>As she held the note close to her heart, she noticed two more paths ahead...</p>
+                    </div>
+                    <div class="story-choices">
+                        <button class="choice-btn" onclick="showScene('scene-cave')">Explore the mysterious cave by the shore</button>
+                        <button class="choice-btn" onclick="showScene('scene-boat')">Find the small boat tied to a nearby palm tree</button>
+                    </div>
+                    <button class="back-story-btn" onclick="showScene('scene-start')">Go back</button>
+                </div>
+                
+                <!-- Forest Scene -->
+                <div class="story-container" id="scene-forest" style="display: none;">
+                    <h2 class="story-title">The Enchanted Forest</h2>
+                    <div class="story-content">
+                        <p>The princess ventured into a magical forest filled with twinkling lights and colorful flowers. The trees seemed to whisper her name as she passed.</p>
+                        <p>In the heart of the forest, she discovered a small clearing where butterflies danced around a wooden chest.</p>
+                        <p>Inside the chest was a note: "Every moment with you is magical. You bring color and light to my world, just like you've done to this forest."</p>
+                        <p>The princess noticed two paths continuing deeper into the forest...</p>
+                    </div>
+                    <div class="story-choices">
+                        <button class="choice-btn" onclick="showScene('scene-waterfall')">Follow the sound of rushing water</button>
+                        <button class="choice-btn" onclick="showScene('scene-treehouse')">Climb up to the hidden treehouse</button>
+                    </div>
+                    <button class="back-story-btn" onclick="showScene('scene-start')">Go back</button>
+                </div>
+                
+                <!-- Mountain Scene -->
+                <div class="story-container" id="scene-mountain" style="display: none;">
+                    <h2 class="story-title">The Misty Mountain</h2>
+                    <div class="story-content">
+                        <p>The princess climbed the winding path up the mountain, passing through soft clouds until she reached a viewpoint that overlooked the entire kingdom.</p>
+                        <p>There, carved into a stone, were the words: "My love for you reaches higher than any mountain. With you by my side, I feel like I can conquer anything."</p>
+                        <p>From this vantage point, she could see two paths leading down...</p>
+                    </div>
+                    <div class="story-choices">
+                        <button class="choice-btn" onclick="showScene('scene-cabin')">Visit the cozy cabin with smoke coming from its chimney</button>
+                        <button class="choice-btn" onclick="showScene('scene-peak')">Continue to the mountain's peak</button>
+                    </div>
+                    <button class="back-story-btn" onclick="showScene('scene-start')">Go back</button>
+                </div>
+                
+                <!-- Additional Scenes (brief summaries, you can expand these) -->
+                <div class="story-container" id="scene-cave" style="display: none;">
+                    <h2 class="story-title">The Mysterious Cave</h2>
+                    <div class="story-content">
+                        <p>The princess ventured into the cave, which was illuminated by glowing crystals. Deep inside, she found a chest filled with seashells, each one with a memory written on it.</p>
+                        <p>One shell read: "Our first beach day together," another said "Watching the sunset on the pier."</p>
+                        <p>There was a note: "Like these shells, I collect and treasure every moment with you."</p>
+                        <p>At the back of the cave was a passage leading to...</p>
+                    </div>
+                    <div class="story-choices">
+                        <button class="choice-btn" onclick="showScene('scene-finale')">Follow the passage to a secret cove</button>
+                    </div>
+                    <button class="back-story-btn" onclick="showScene('scene-beach')">Go back</button>
+                </div>
+                
+                <div class="story-container" id="scene-boat" style="display: none;">
+                    <h2 class="story-title">The Small Boat</h2>
+                    <div class="story-content">
+                        <p>The princess untied the boat and rowed out into the calm, turquoise waters. As she drifted peacefully, dolphins began to swim alongside her.</p>
+                        <p>They guided her to a small island where she found a message in the sand: "Like the ocean, my love for you is deep and endless."</p>
+                        <p>On the island, there was a path leading to...</p>
+                    </div>
+                    <div class="story-choices">
+                        <button class="choice-btn" onclick="showScene('scene-finale')">Follow the path through the palm trees</button>
+                    </div>
+                    <button class="back-story-btn" onclick="showScene('scene-beach')">Go back</button>
+                </div>
+                
+                <!-- Additional forest and mountain paths (add more details as needed) -->
+                <div class="story-container" id="scene-waterfall" style="display: none;">
+                    <h2 class="story-title">The Hidden Waterfall</h2>
+                    <div class="story-content">
+                        <p>The princess discovered a magnificent waterfall cascading into a crystal-clear pool. Behind the waterfall was a small cave where she found a note in a waterproof container.</p>
+                        <p>The note read: "Like this constant flow of water, my love for you never stops. It only grows stronger with each passing day."</p>
+                        <p>Swimming through the pool, she found a passage to...</p>
+                    </div>
+                    <div class="story-choices">
+                        <button class="choice-btn" onclick="showScene('scene-finale')">Follow the stream from the waterfall</button>
+                    </div>
+                    <button class="back-story-btn" onclick="showScene('scene-forest')">Go back</button>
+                </div>
+                
+                <div class="story-container" id="scene-treehouse" style="display: none;">
+                    <h2 class="story-title">The Hidden Treehouse</h2>
+                    <div class="story-content">
+                        <p>The princess climbed up to find a magical treehouse filled with twinkling lights and comfortable cushions. On a small table was a photo album.</p>
+                        <p>Inside were illustrations of all your special moments together, with notes about each memory.</p>
+                        <p>The last page had a map leading to...</p>
+                    </div>
+                    <div class="story-choices">
+                        <button class="choice-btn" onclick="showScene('scene-finale')">Follow the map to a secret garden</button>
+                    </div>
+                    <button class="back-story-btn" onclick="showScene('scene-forest')">Go back</button>
+                </div>
+                
+                <div class="story-container" id="scene-cabin" style="display: none;">
+                    <h2 class="story-title">The Cozy Cabin</h2>
+                    <div class="story-content">
+                        <p>The princess entered the warm cabin to find a crackling fire and a table set for two with her favorite foods. On her plate was a note.</p>
+                        <p>It read: "You make every place feel like home. With you, I've found where I belong."</p>
+                        <p>Through the back door of the cabin was a path leading to...</p>
+                    </div>
+                    <div class="story-choices">
+                        <button class="choice-btn" onclick="showScene('scene-finale')">Follow the path through the snowy forest</button>
+                    </div>
+                    <button class="back-story-btn" onclick="showScene('scene-mountain')">Go back</button>
+                </div>
+                
+                <div class="story-container" id="scene-peak" style="display: none;">
+                    <h2 class="story-title">The Mountain Peak</h2>
+                    <div class="story-content">
+                        <p>At the very top of the mountain, the princess found a telescope. Looking through it, she could see constellations forming in the daylight sky.</p>
+                        <p>They spelled out: "You are my star, my sun, my moon. You light up my universe."</p>
+                        <p>As she gazed at the stars, a shooting star fell nearby, revealing a path to...</p>
+                    </div>
+                    <div class="story-choices">
+                        <button class="choice-btn" onclick="showScene('scene-finale')">Follow the path of starlight</button>
+                    </div>
+                    <button class="back-story-btn" onclick="showScene('scene-mountain')">Go back</button>
+                </div>
+                
+                <!-- Finale Scene -->
+                <div class="story-container" id="scene-finale" style="display: none;">
+                    <h2 class="story-title">The Birthday Surprise</h2>
+                    <div class="story-content">
+                        <p>All paths led to a beautiful garden filled with your favorite flowers. In the center was a gazebo decorated with lights and ribbons.</p>
+                        <p>Inside the gazebo was a letter and a small box. The letter read:</p>
+                        <p><em>"My darling,</em></p>
+                        <p><em>No matter which path you take in life, I want to walk it with you. Every adventure is better with you by my side. You make ordinary days extraordinary, and you turn simple moments into memories I'll cherish forever.</em></p>
+                        <p><em>Happy birthday to the most amazing person I know. I love you more with each passing day.</em></p>
+                        <p><em>Forever yours"</em></p>
+                        <p>And inside the box was... (your actual gift or surprise!)</p>
+                    </div>
+                    <button class="back-story-btn" onclick="showScene('scene-start')">Start a new adventure</button>
+                </div>
+            </div>
+        </div>
+        
+        <a href="main.html" class="back-btn">Back to Main Page</a>
+    </div>
+    
+    <footer>
+        <p>Made with <span class="heart">❤️</span> just for you | Happy Birthday 2025</p>
+    </footer>
+    
+    <script>
+        // Tab functionality
+        function openTab(evt, tabName) {
+            var i, tabcontent, tablinks;
+            
+            // Hide all tab content
+            tabcontent = document.getElementsByClassName("tab-content");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].className = tabcontent[i].className.replace(" active", "");
+            }
+            
+            // Remove "active" class from all tabs
+            tablinks = document.getElementsByClassName("tab");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            
+            // Show the current tab and add "active" class
+            document.getElementById(tabName).className += " active";
+            evt.currentTarget.className += " active";
+        }
+        
+        // Toggle song notes
+        function toggleNote(noteId) {
+            var note = document.getElementById(noteId);
+            if (note.style.display === "block") {
+                note.style.display = "none";
+            } else {
+                note.style.display = "block";
+            }
+        }
+        
+        // Play song function
+        function playSong(songId) {
+            var audio = document.getElementById(songId);
+            
+            // Pause all other songs first
+            var allAudios = document.getElementsByTagName('audio');
+            for (var i = 0; i < allAudios.length; i++) {
+                if (allAudios[i].id !== songId) {
+                    allAudios[i].pause();
+                }
+            }
+            
+            // Play or pause the selected song
+            if (audio.paused) {
+                audio.play();
+            } else {
+                audio.pause();
+            }
+        }
+        
+        // Story navigation
+        function showScene(sceneId) {
+            // Hide all scenes
+            var scenes = document.querySelectorAll('[id^="scene-"]');
+            scenes.forEach(function(scene) {
+                scene.style.display = "none";
+            });
+            
+            // Show selected scene
+            document.getElementById(sceneId).style.display = "block";
+        }
+    </script>
+</body>
+</html>

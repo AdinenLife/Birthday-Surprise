@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For You ❤️</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        body {
+            background: #121212;
+            color: #e0e0e0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #1f1f1f, #2d2d2d);
+            text-align: center;
+            padding: 2rem 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+        }
+        
+        h1 {
+            color: #ff7eb3;
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .subtitle {
+            color: #b0b0b0;
+            font-size: 1.2rem;
+        }
+        
+        .section-container {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            padding: 2rem 0;
+        }
+        
+        @media (min-width: 768px) {
+            .section-container {
+                flex-direction: row;
+            }
+        }
+        
+        .section {
+            flex: 1;
+            margin: 1rem;
+            background: linear-gradient(135deg, #222, #333);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            border: 1px solid #444;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .section:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(255, 126, 179, 0.2);
+            border-color: #ff65a3;
+        }
+        
+        .section-img {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        #section1 .section-img {
+            background-image: url('heart.jpg');
+        }
+        
+        #section2 .section-img {
+            background-image: url('envolope.jpg');
+        }
+        
+        #section3 .section-img {
+            background-image: url('disc.jpg');
+        }
+        
+        .section-content {
+            padding: 1.5rem;
+            text-align: center;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .section h2 {
+            color: #ff7eb3;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+        
+        .section p {
+            color: #b0b0b0;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+            flex: 1;
+        }
+        
+        .btn {
+            background: #ff7eb3;
+            color: #121212;
+            text-decoration: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 30px;
+            display: inline-block;
+            font-weight: bold;
+            transition: all 0.3s;
+            margin-top: auto;
+        }
+        
+        .btn:hover {
+            background: #ff65a3;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 126, 179, 0.4);
+        }
+        
+        footer {
+            text-align: center;
+            padding: 1.5rem;
+            background: #1a1a1a;
+            color: #888;
+            font-size: 0.9rem;
+        }
+        
+        .heart {
+            color: #ff7eb3;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Happy Birthday, Beautiful</h1>
+        <p class="subtitle">Choose your journey through our memories...</p>
+    </header>
+    
+    <div class="section-container">
+        <div class="section" id="section1">
+            <div class="section-img"></div>
+            <div class="section-content">
+                <h2>Our Story</h2>
+                <p>Journey through our most precious memories together, from our first meeting to all the adventures we've shared.</p>
+                <a href="memories.html" class="btn">Explore Our Journey</a>
+            </div>
+        </div>
+        
+        <div class="section" id="section2">
+            <div class="section-img"></div>
+            <div class="section-content">
+                <h2>My Feelings</h2>
+                <p>Words from my heart to yours - all the things I love about you and what makes you so special to me.</p>
+                <a href="letter.html" class="btn">Read My Heart</a>
+            </div>
+        </div>
+        
+        <div class="section" id="section3">
+            <div class="section-img"></div>
+            <div class="section-content">
+                <h2>Birthday Surprise</h2>
+                <p>A special gift awaits you here - something I've prepared just for your special day.</p>
+                <a href="surprise.html" class="btn">Open Your Gift</a>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <p>Made with <span class="heart">❤️</span> just for you | Happy Birthday 2025</p>
+    </footer>
+</body>
+</html>

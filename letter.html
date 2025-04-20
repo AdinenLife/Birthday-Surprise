@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Feelings For You ❤️</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #121212, #2d2d2d);
+            color: #e0e0e0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem 1rem;
+        }
+        
+        .letter-container {
+            background-color: #f9f7e8; /* Light cream color for notebook paper */
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            border: 1px solid #d4ccaa;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        /* Notebook horizontal lines */
+        .letter-content {
+            padding: 2.5rem 2.5rem 2.5rem 4rem; /* Extra padding on left for margin */
+            position: relative;
+            color: #333; /* Dark text for contrast on light paper */
+            background: linear-gradient(
+                to bottom,
+                transparent 0px,
+                transparent calc(1.8rem - 1px),
+                #c1bca4 calc(1.8rem),
+                transparent calc(1.8rem + 1px),
+                transparent 1.8rem
+            );
+            background-size: 100% 1.8rem;
+            line-height: 1.8rem;
+        }
+        
+        /* Red margin line */
+        .letter-content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 3rem;
+            height: 100%;
+            width: 1px;
+            background-color: #d9534f; /* Red margin line */
+            z-index: 1;
+        }
+        
+        /* Punched holes effect */
+        .punch-holes::before {
+            content: '';
+            position: absolute;
+            left: 1.5rem;
+            top: 10%;
+            width: 0.75rem;
+            height: 0.75rem;
+            background-color: #121212;
+            border-radius: 50%;
+            box-shadow: 0 0 0 2px rgba(0,0,0,0.1);
+            z-index: 2;
+        }
+        
+        .punch-holes::after {
+            content: '';
+            position: absolute;
+            left: 1.5rem;
+            top: 50%;
+            width: 0.75rem;
+            height: 0.75rem;
+            background-color: #121212;
+            border-radius: 50%;
+            box-shadow: 0 0 0 2px rgba(0,0,0,0.1);
+            z-index: 2;
+        }
+        
+        .punch-holes-bottom::before {
+            content: '';
+            position: absolute;
+            left: 1.5rem;
+            bottom: 10%;
+            width: 0.75rem;
+            height: 0.75rem;
+            background-color: #121212;
+            border-radius: 50%;
+            box-shadow: 0 0 0 2px rgba(0,0,0,0.1);
+            z-index: 2;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #1f1f1f, #2d2d2d);
+            text-align: center;
+            padding: 2rem 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+        
+        h1 {
+            color: #ff7eb3;
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .subtitle {
+            color: #b0b0b0;
+            font-size: 1.1rem;
+        }
+        
+        .letter-content p {
+            margin-bottom: 1.8rem; /* Match line height */
+            position: relative;
+            z-index: 2;
+            text-align: left;
+        }
+        
+        .date {
+            text-align: right;
+            margin-bottom: 1.8rem;
+            font-style: italic;
+        }
+        
+        .salutation {
+            margin-bottom: 1.8rem;
+        }
+        
+        .body-text p {
+            text-indent: 2rem; /* Indent first line of each paragraph */
+        }
+        
+        .signature {
+            font-family: 'Brush Script MT', cursive;
+            font-size: 2rem;
+            color: #d9534f; /* Match margin line color */
+            margin-top: 3.6rem;
+            text-align: right;
+        }
+        
+        .back-btn {
+            display: inline-block;
+            margin-top: 2rem;
+            background: #ff7eb3;
+            color: #121212;
+            text-decoration: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 30px;
+            font-weight: bold;
+            transition: all 0.3s;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+        
+        .back-btn:hover {
+            background: #ff65a3;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(255, 126, 179, 0.4);
+        }
+    </style>
+</head>
+<body>
+    <div class="letter-container">
+        <header>
+            <h1>My Feelings For You</h1>
+            <p class="subtitle">Words from my heart to yours</p>
+        </header>
+        
+        <div class="letter-content">
+            <!-- Punched holes decoration -->
+            <div class="punch-holes"></div>
+            <div class="punch-holes-bottom"></div>
+            
+            <p class="date">April 20, 2025</p>
+            
+            <p class="salutation">My darling,</p>
+            
+            <div class="body-text">
+                <p>From the moment we first talked on Instagram, you've transformed my world in ways I never thought possible. Each day with you feels like a gift that I cherish more than anything else.</p>
+                
+                <p>When I look at you, I see someone whose beauty transcends the physical - though you are truly stunning. Your kindness, your creativity, and your incredible strength inspire me daily. The way you laugh on my stupid jokes and childish behaviour, is the most beautiful sound I've ever heard. It makes my day.</p>
+                
+                <p>You have been the best thing that has happened to me. Through every challenge we've faced, every triumph we've celebrated, my love for you has only grown stronger. You are one of the strongest and most beautiful person to exist in my life. I am very lucky to have you in my life.</p>
+                
+                <p>What I treasure most are the quiet moments we share - watching movies together, talking late into the night, simply being in each other's presence. In those moments, I find a peace and happiness I never knew existed. You have been my light in my darkest days, my sun in the rainy sky. Thank you for everything that you do for me, my baby girl.</p>
+                
+                <p>I want you to know that you deserve all the joy and love in the world. You make everything brighter just by being you, and I promise to spend every day trying to bring you the same happiness you bring to me and making myself better for you.</p>
+                
+                <p>Thank you for being my partner, my supporter, and my best friend. I am so grateful that of all the people in this world, I get to call you mine.</p>
+                
+                <p>Happy birthday, my love. Here's to many more years of adventures, laughter, and love.</p>
+            </div>
+            
+            <div class="signature">Your Potato</div>
+        </div>
+    </div>
+    
+    <a href="main.html" class="back-btn">Back to Main Page</a>
+</body>
+</html>
